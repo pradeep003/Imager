@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+apikey.properties
+app/src/main/java/com/ftcoding/imager/util/Constants.kt

@@ -1,5 +1,6 @@
 package com.ftcoding.imager.util
 
+import com.ftcoding.imager.BuildConfig
 import com.ftcoding.imager.api.components.Scope
 
 object Constants {
