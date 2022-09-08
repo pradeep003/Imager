@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="500">
+        <KeyFrameSet>
+            <KeyAttribute
+                android:alpha="0.5"
+                motion:framePosition="50"
+                motion:motionTarget="@+id/tv_username_user_profile" />
+        </KeyFrameSet>
+        <OnSwipe
+            motion:dragDirection="dragUp"
+            motion:touchAnchorId="@+id/iv_cover_user_profile"
+            motion:touchAnchorSide="bottom" />
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+
+
+        <Constraint
+            android:id="@+id/iv_cover_user_profile"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:alpha="1"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintHorizontal_bias="0.0"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/iv_user_profile"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="0dp"
+            android:elevation="20dp"
+            android:translationY="75dp"
+            motion:layout_constraintBottom_toBottomOf="@+id/iv_cover_user_profile"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/ll_user_details_user_profile"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="75dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/iv_user_profile" />
+        <Constraint
+            android:id="@+id/tv_username_user_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:alpha="0"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:shadowColor="@color/white"
+            android:text="@{user.username}"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            motion:layout_constraintBottom_toBottomOf="@id/iv_cover_user_profile"
+            motion:layout_constraintStart_toEndOf="@id/iv_user_profile" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+
+
+        <Constraint
+            android:id="@+id/iv_cover_user_profile"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:alpha="0.6"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintHorizontal_bias="0.0"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/iv_user_profile"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="5dp"
+            android:elevation="20dp"
+            android:translationY="0dp"
+            motion:layout_constraintBottom_toBottomOf="@+id/iv_cover_user_profile"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/ll_user_details_user_profile"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="0dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/iv_user_profile" />
+        <Constraint
+            android:id="@+id/tv_username_user_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="15dp"
+            android:alpha="1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:shadowColor="@color/white"
+            android:text="@{user.username}"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            motion:layout_constraintBottom_toBottomOf="@id/iv_cover_user_profile"
+            motion:layout_constraintStart_toEndOf="@id/iv_user_profile" />
+    </ConstraintSet>
+</MotionScene>

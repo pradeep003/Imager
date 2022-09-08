@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/91909/Desktop/Imager/app/src/main/res/drawable/ic_add.xml" value="0.1" />
+        <entry key="..\:/Users/91909/Desktop/Imager/app/src/main/res/drawable/ic_login.xml" value="0.1" />
+        <entry key="..\:/Users/91909/Desktop/Imager/app/src/main/res/drawable/ic_photo.xml" value="0.1" />
+        <entry key="..\:/Users/91909/Desktop/Imager/app/src/main/res/layout/activity_main.xml" value="0.16576086956521738" />
+        <entry key="..\:/Users/91909/Desktop/Imager/app/src/main/res/layout/activity_user.xml" value="0.1" />
+        <entry key="..\:/Users/91909/Desktop/Imager/app/src/main/res/layout/activity_user_profile.xml" value="0.1" />
+        <entry key="..\:/Users/91909/Desktop/Imager/app/src/main/res/layout/bottom_sheet_placeholder.xml" value="0.1" />
+        <entry key="..\:/Users/91909/Desktop/Imager/app/src/main/res/layout/collection_child_item.xml" value="0.18342391304347827" />
+        <entry key="..\:/Users/91909/Desktop/Imager/app/src/main/res/layout/collection_fragment_placeholder.xml" value="0.18342391304347827" />
+        <entry key="..\:/Users/91909/Desktop/Imager/app/src/main/res/layout/collection_images_item.xml" value="0.18342391304347827" />
+        <entry key="..\:/Users/91909/Desktop/Imager/app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.1" />
+        <entry key="..\:/Users/91909/Desktop/Imager/app/src/main/res/layout/fragment_collection.xml" value="0.18342391304347827" />
+        <entry key="..\:/Users/91909/Desktop/Imager/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Users/91909/Desktop/Imager/app/src/main/res/layout/fragment_home_placeholder.xml" value="0.1" />
+        <entry key="..\:/Users/91909/Desktop/Imager/app/src/main/res/layout/fragment_my_profile.xml" value="0.1" />
+        <entry key="..\:/Users/91909/Desktop/Imager/app/src/main/res/layout/images_item.xml" value="0.18342391304347827" />
+        <entry key="..\:/Users/91909/Desktop/Imager/app/src/main/res/menu/edit_menu.xml" value="0.1" />
+        <entry key="..\:/Users/91909/Desktop/Imager/app/src/main/res/menu/main.xml" value="0.1" />
+        <entry key="..\:/Users/91909/Desktop/Imager/app/src/main/res/menu/menu.xml" value="0.1" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.ftcoding.imager.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/nav_collections"
+        android:name="com.ftcoding.imager.ui.collections.CollectionFragment"
+        android:label="Collection"
+        tools:layout="@layout/fragment_collection">
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="imager.com/login" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.ftcoding.imager.ui.profile.MyProfileFragment"
+        tools:layout="@layout/fragment_my_profile"
+        android:label="My Profile"/>
+    <activity
+        android:id="@+id/userProfileActivity"
+        android:name="com.ftcoding.imager.ui.user_profile_activity.UserProfileActivity"
+        android:label="UserProfileActivity" >
+        <argument
+            android:name="username"
+            app:argType="string"/>
+    </activity>
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.ftcoding.imager.ui.MainActivity"
+        android:label="MainActivity" />
+</navigation>

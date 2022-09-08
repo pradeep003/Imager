@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">Imager</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_collection">Collections</string>
+    <string name="menu_profile">Profile</string>
+    <string name="images_list">images_list</string>
+    <string name="unknown_error">unknown error</string>
+    <string name="signin">SignIn</string>
+    <string name="username">Username(only letters, numbers, and underscores)</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email">Email</string>
+    <string name="personal_url">Portfolio/personal URL.</string>
+    <string name="location">Location</string>
+    <string name="instagram_username">Instagram Username</string>
+    <string name="bio">Bio</string>
+    <string name="photo_by">Photo by %s on </string>
+    <string name="download_image">download image</string>
+    <string name="add">add</string>
+    <string name="edit">Edit</string>
+    <string name="user_cover_photo">user cover photo</string>
+    <string name="username_is_empty">username can\'t be empty</string>
+    <string name="connection_error">Connection Error</string>
+    <string name="timeout">Sorry, Timeout</string>
+    <string name="favourite_image">favourite image</string>
+    <string name="add_image">Add image to collection</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="favourite_photo">Favourite Photo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="setting">Setting</string>
+    <string name="try_again">Try Again</string>
+    <string name="check_your_internet">Check your Internet Connection and Try Again</string>
+    <string name="no_internet">no_internet</string>
+    <string name="image_quality">Image Quality</string>
+    <string name="profile_image_quality">Profile Image Quality</string>
+    <string name="cancel">CANCEL</string>
+    <string name="save">SAVE</string>
+    <string name="retry">retry</string>
+    <string name="unsplash"> UNSPLASH</string>
+    <string name="theme_dark_light">Theme (Dark/Light)</string>
+    <string name="action_settings">Setting</string>
+</resources>

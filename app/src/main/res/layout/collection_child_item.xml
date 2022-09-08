@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        app:cardCornerRadius="8dp"
+        android:elevation="12dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_photo_child_collection"
+            android:layout_width="250dp"
+            android:layout_height="300dp"
+            android:scaleType="fitXY"
+            android:padding="2dp"
+            android:elevation="20dp"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.ImageViewRoundCorner"/>
+
+    </androidx.cardview.widget.CardView>
+</layout>

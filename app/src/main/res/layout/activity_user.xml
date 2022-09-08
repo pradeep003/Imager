@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="user"
+            type="com.ftcoding.imager.data.response.CurrentUser" />
+    </data>
+
+    <ScrollView
+        android:id="@+id/sv_activity_user"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/st_layout_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            tools:context=".ui.current_user_activity.UserActivity">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivProfileImageUser"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="8dp"
+                android:elevation="12dp"
+                android:scaleType="fitXY"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.ImageViewRoundCorner" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="@string/username"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/etUsernameUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_rounded"
+                android:maxEms="50"
+                android:textColor="@color/black"
+                android:maxLines="1"
+                android:text="@{user.username}"
+                android:autofillHints="Username"
+                android:inputType="text"
+                tools:ignore="LabelFor" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="@string/first_name"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/etFirstNameUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_rounded"
+                android:maxEms="50"
+                android:maxLines="1"
+                android:text="@{user.firstName}"
+                android:textColor="@color/black"
+                android:autofillHints="first name"
+                android:inputType="text"
+                tools:ignore="LabelFor"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="@string/last_name"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/etLastNameUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_rounded"
+                android:maxEms="50"
+                android:maxLines="1"
+                android:text="@{user.lastName}"
+                android:textColor="@color/black"
+                android:autofillHints="last name"
+                android:inputType="text"
+                tools:ignore="LabelFor"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="@string/email"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/etEmailUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_rounded"
+                android:textColor="@color/black"
+                android:maxEms="50"
+                android:maxLines="1"
+                android:text="@{user.email}"
+                android:autofillHints="Email"
+                android:inputType="textEmailAddress"
+                tools:ignore="LabelFor"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="@string/personal_url"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/etPortfolioUrlUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_rounded"
+                android:maxEms="50"
+                android:maxLines="1"
+                android:text="@{user.portfolioUrl}"
+                android:textColor="@color/black"
+                android:autofillHints="portfolio url"
+                android:inputType="textUri"
+                tools:ignore="LabelFor"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="@string/location"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/etLocationUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_rounded"
+                android:textColor="@color/black"
+                android:maxEms="50"
+                android:maxLines="1"
+                android:text="@{user.location}"
+                android:autofillHints="location"
+                android:inputType="text"
+                tools:ignore="LabelFor"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="@string/instagram_username"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/etInstagramUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_rounded"
+                android:maxEms="50"
+                android:maxLines="1"
+                android:text="@{user.instagramUsername}"
+                android:textColor="@color/black"
+                android:autofillHints="instagram username"
+                android:inputType="text"
+                tools:ignore="LabelFor"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="@string/bio"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/etBioUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_white_rounded"
+                android:maxEms="500"
+                android:maxLines="5"
+                android:text="@{user.bio}"
+                android:textColor="@color/black"
+                android:autofillHints="bio"
+                android:inputType="text"
+                tools:ignore="LabelFor"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>
