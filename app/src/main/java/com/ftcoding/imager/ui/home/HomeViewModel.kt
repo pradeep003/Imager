@@ -3,39 +3,31 @@ package com.ftcoding.imager.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.paging.cachedIn
-import com.ftcoding.imager.api.ImagesApi
 import com.ftcoding.imager.data.response.ImageResponse
-import com.ftcoding.imager.repository.paging.ImagerPagingSource
-import com.ftcoding.imager.repository.paging.SearchPhotoPagingSource
 import com.ftcoding.imager.use_cases.image.ImageUseCases
-import com.ftcoding.imager.util.Constants.PAGINATION_PAGE_SIZE
 import com.ftcoding.imager.util.Resource
+import com.ftcoding.imager.util.UiText
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val api: ImagesApi,
     private val imageUseCases: ImageUseCases,
 ) : ViewModel() {
 
     private var _isLikedPhoto = MutableLiveData(false)
     val isLikedPhoto: LiveData<Boolean> = _isLikedPhoto
 
-    private var _errorState = MutableLiveData<String>()
-    val errorState: LiveData<String> = _errorState
+    private var _errorState = MutableLiveData<UiText>()
+    val errorState: LiveData<UiText> = _errorState
 
     // fetch all image List
     val imagesList: Flow<PagingData<ImageResponse>> = imageUseCases.getAllPagingImageUseCases.invoke()
 
     // search photo and return a pagination list
-    fun searchPhoto(query: String) : Flow<PagingData<ImageResponse>> {
+    fun searchPhoto(query: String): Flow<PagingData<ImageResponse>> {
         return imageUseCases.getAllSearchedImageUseCases.invoke(query)
     }
 
@@ -67,11 +59,10 @@ class HomeViewModel @Inject constructor(
                 )
             }
             is Resource.Error -> {
-                _errorState.value = likePhoto.uiText.toString()
+                _errorState.value = likePhoto.uiText!!
                 null
             }
         }
-
     }
 
     suspend fun unLikePhoto(id: String): ImageResponse? {
@@ -102,7 +93,7 @@ class HomeViewModel @Inject constructor(
                 imageResponse
             }
             is Resource.Error -> {
-                _errorState.value = unLikePhoto.uiText.toString()
+                _errorState.value = unLikePhoto.uiText!!
                 null
             }
         }
@@ -114,6 +105,7 @@ class HomeViewModel @Inject constructor(
                 photo.data?.url
             }
             is Resource.Error -> {
+                _errorState.value = photo.uiText!!
                 null
             }
         }
@@ -125,7 +117,7 @@ class HomeViewModel @Inject constructor(
                 photo.data
             }
             is Resource.Error -> {
-                _errorState.value = photo.uiText.toString()
+                _errorState.value = photo.uiText!!
                 null
             }
         }

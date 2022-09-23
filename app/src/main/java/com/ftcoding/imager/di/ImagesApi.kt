@@ -45,7 +45,8 @@ object ImagesApi {
                 unLikePhotoUseCases = UnLikePhotoUseCases(repository),
                 downloadPhotoUseCases = DownloadPhotoUseCases(repository),
                 getAllPagingImageUseCases = GetAllPagingImageUseCases(api),
-                getAllSearchedImageUseCases = GetAllSearchedImageUseCases(api)
+                getAllSearchedImageUseCases = GetAllSearchedImageUseCases(api),
+                getAllLPagingCollectionImageUseCases = GetAllLPagingCollectionImageUseCases(api)
             )
     }
 }

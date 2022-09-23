@@ -6,5 +6,6 @@ data class ImageUseCases (
     val unLikePhotoUseCases: UnLikePhotoUseCases,
     val downloadPhotoUseCases: DownloadPhotoUseCases,
     val getAllPagingImageUseCases: GetAllPagingImageUseCases,
-    val getAllSearchedImageUseCases: GetAllSearchedImageUseCases
+    val getAllSearchedImageUseCases: GetAllSearchedImageUseCases,
+    val getAllLPagingCollectionImageUseCases: GetAllLPagingCollectionImageUseCases
         )

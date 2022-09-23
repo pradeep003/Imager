@@ -14,17 +14,4 @@ object NetworkCheck {
 
         return (capabilities != null && capabilities.hasCapability(NET_CAPABILITY_INTERNET))
     }
-
-//    fun refreshFragment (context: Context) {
-//        val fragmentManager =
-//        fragmentManager.let {
-//            val currentFragment = fragmentManager.findFragmentById(R.id.drawer_layout)
-//            currentFragment?.let {
-//                val fragmentTransaction = fragmentManager.beginTransaction()
-//                fragmentTransaction.detach(it)
-//                fragmentTransaction.attach(it)
-//                fragmentTransaction.commit()
-//            }
-//        }
-//    }
 }

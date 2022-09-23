@@ -1,6 +1,6 @@
 package com.ftcoding.imager.api.components
 
-enum class Scope private constructor(val scope: String){
+enum class Scope(val scope: String){
 
     PUBLIC("public"),
     READ_USER("read_user"),

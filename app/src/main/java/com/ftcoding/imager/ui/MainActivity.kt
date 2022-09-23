@@ -1,13 +1,10 @@
 package com.ftcoding.imager.ui
 
-import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -19,10 +16,7 @@ import com.ftcoding.imager.components.BottomSheet
 import com.ftcoding.imager.databinding.ActivityMainBinding
 import com.ftcoding.imager.repository.prefstore.PrefsStore
 import com.ftcoding.imager.repository.prefstore.PrefsStoreImpl
-import com.ftcoding.imager.ui.collections.CollectionFragment
 import com.ftcoding.imager.ui.current_user_activity.UserActivity
-import com.ftcoding.imager.ui.home.HomeFragment
-import com.ftcoding.imager.ui.profile.MyProfileFragment
 import com.ftcoding.imager.util.Constants
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.first
@@ -49,22 +43,6 @@ class MainActivity : AppCompatActivity() {
 
         // instance of Preference Datastore
         prefsStore = PrefsStoreImpl(this)
-
-//        // bottom navigation menu
-//        binding.bottomNav.setOnItemReselectedListener { item ->
-//            when(item.itemId) {
-//                R.id.nav_home -> {
-//                    loadFragment(HomeFragment())
-//                }
-//                R.id.nav_collections -> {
-//                    loadFragment(CollectionFragment())
-//                }
-//                R.id.nav_profile -> {
-//                    loadFragment(MyProfileFragment())
-//
-//                }
-//            }
-//        }
     }
 
 

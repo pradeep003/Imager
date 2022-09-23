@@ -15,6 +15,7 @@ import com.ftcoding.imager.repository.paging.CollectionPagingSource
 import com.ftcoding.imager.repository.paging.CollectionPhotosPagingSource
 import com.ftcoding.imager.use_cases.image.ImageUseCases
 import com.ftcoding.imager.util.Resource
+import com.ftcoding.imager.util.UiText
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -27,19 +28,14 @@ class CollectionViewModel @Inject constructor(
     private val imageUseCases: ImageUseCases
 ) : ViewModel() {
 
-//    private var _isLikedPhoto = mutableStateOf(false)
-//    val isLikedPhoto: State<Boolean> = _isLikedPhoto
-
     private var _photoById = MutableSharedFlow<ImageResponse>()
     val photoById: SharedFlow<ImageResponse> = _photoById
 
-    private var _errorState = MutableLiveData<String>()
-    val errorState: LiveData<String> = _errorState
+    private var _errorState = MutableLiveData<UiText>()
+    val errorState: LiveData<UiText> = _errorState
 
-    val collectionList: Flow<PagingData<CollectionResponse>> = Pager(PagingConfig(pageSize = 10)) {
-        CollectionPagingSource(api)
-    }.flow
-        .cachedIn(viewModelScope)
+    // get collection list
+    val collectionList: Flow<PagingData<CollectionResponse>> = imageUseCases.getAllLPagingCollectionImageUseCases.invoke()
 
     suspend fun getPhotoById(id: String): ImageResponse? {
         return when (val photo = imageUseCases.getPhotoByIdUseCases.invoke(id)) {
@@ -47,7 +43,7 @@ class CollectionViewModel @Inject constructor(
                 photo.data
             }
             is Resource.Error -> {
-                _errorState.value = photo.uiText.toString()
+                _errorState.value = photo.uiText!!
                 null
             }
 
@@ -62,45 +58,13 @@ class CollectionViewModel @Inject constructor(
         return collectionPhotosList
     }
 
-//    fun likePhoto(id: String) {
-//        viewModelScope.launch {
-//            val likePhoto = imageUseCases.likePhotoUseCases.invoke(id)
-//            when (likePhoto) {
-//                is Resource.Success -> {
-//                    likePhoto.data?.likedByUser?.let {
-//                        _isLikedPhoto.value = it
-//                    }
-//                }
-//                is Resource.Error -> {
-//                    _errorState.value = likePhoto.uiText.toString()
-//                }
-//            }
-//        }
-//    }
-//
-//    fun unLikePhoto(id: String) {
-//        viewModelScope.launch {
-//            val unLikePhoto = imageUseCases.unLikePhotoUseCases.invoke(id)
-//            when (unLikePhoto) {
-//                is Resource.Success -> {
-//                    unLikePhoto.data?.likedByUser?.let {
-//                        println("Unlike photo =========== $it")
-//                        _isLikedPhoto.value = it
-//                    }
-//                }
-//                is Resource.Error -> {
-//                    _errorState.value = unLikePhoto.uiText.toString()
-//                }
-//            }
-//        }
-//    }
-
     suspend fun downloadPhoto(id: String): String? {
         return when (val photo = imageUseCases.downloadPhotoUseCases.invoke(id)) {
             is Resource.Success -> {
                 photo.data?.url
             }
             is Resource.Error -> {
+                _errorState.value = photo.uiText!!
                 null
             }
         }

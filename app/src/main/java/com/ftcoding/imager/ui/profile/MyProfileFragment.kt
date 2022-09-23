@@ -18,12 +18,16 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.ftcoding.imager.R
 import com.ftcoding.imager.adapter.GridImageAdapter
 import com.ftcoding.imager.adapter.HeaderFooterAdapter
+import com.ftcoding.imager.api.Auth
 import com.ftcoding.imager.components.NetworkCheck
 import com.ftcoding.imager.databinding.FragmentMyProfileBinding
 import com.ftcoding.imager.repository.prefstore.PrefsStore
 import com.ftcoding.imager.repository.prefstore.PrefsStoreImpl
 import com.ftcoding.imager.ui.bottom_sheet.BottomSheetFragment
 import com.ftcoding.imager.ui.current_user_activity.UserActivity
+import com.ftcoding.imager.util.Constants
+import com.ftcoding.imager.util.asString
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -66,7 +70,26 @@ class MyProfileFragment : Fragment() {
             binding.noInternetLayout.visibility = View.VISIBLE
         }
 
+        // if user is not login make login layout visibility Visible and vice versa
+        viewModel.myProfileState.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.loginLayout.visibility = View.GONE
+            } else {
+                binding.loginLayout.visibility = View.VISIBLE
+            }
+        }
 
+        // redirect for login
+        binding.loginButton.setOnClickListener {
+            Auth(Constants.API_KEY, null).authorize(
+                requireActivity(),
+                Constants.redirectUri,
+                Constants.scopes
+            )
+
+        }
+
+        // observe myProfile state (current user profile) and update it
         viewModel.myProfile.observe(viewLifecycleOwner) { currentUser ->
             if (currentUser != null) {
                 binding.apply {
@@ -89,6 +112,16 @@ class MyProfileFragment : Fragment() {
                 }
             }
         }
+
+        // observe error state and show snackbar
+        viewModel.errorState.observe(viewLifecycleOwner) { errorMessage ->
+            Snackbar.make(
+                binding.myProfileFragmentContainer,
+                errorMessage.asString(requireContext()),
+                Snackbar.LENGTH_LONG
+            ).show()
+        }
+
 
         return binding.root
     }
@@ -128,7 +161,11 @@ class MyProfileFragment : Fragment() {
                     binding.shimmerMyProfile.visibility = View.GONE
                 }
                 is LoadState.Error -> {
-                    Toast.makeText(context, "Something went wrong...${(loadState.source.refresh as LoadState.Error).error.localizedMessage}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        context,
+                        "Something went wrong...${(loadState.source.refresh as LoadState.Error).error.localizedMessage}",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
         }

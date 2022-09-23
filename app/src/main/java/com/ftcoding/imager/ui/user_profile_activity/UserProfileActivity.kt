@@ -5,7 +5,6 @@ import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -25,6 +24,8 @@ import com.ftcoding.imager.repository.prefstore.PrefsStore
 import com.ftcoding.imager.repository.prefstore.PrefsStoreImpl
 import com.ftcoding.imager.ui.bottom_sheet.BottomSheetFragment
 import com.ftcoding.imager.util.BlurHashDecoder
+import com.ftcoding.imager.util.asString
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -122,9 +123,12 @@ class UserProfileActivity : AppCompatActivity() {
         }
 
         viewModel.errorState.observe(this) { errorMessage ->
-            if (errorMessage.isNotBlank()) {
-                Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
-            }
+            Snackbar.make(
+                binding.userProfileContainer,
+                errorMessage.asString(this),
+                Snackbar.LENGTH_LONG
+            ).show()
+
         }
     }
 

@@ -20,6 +20,8 @@ import com.ftcoding.imager.databinding.FragmentCollectionBinding
 import com.ftcoding.imager.repository.prefstore.PrefsStore
 import com.ftcoding.imager.repository.prefstore.PrefsStoreImpl
 import com.ftcoding.imager.ui.bottom_sheet.BottomSheetFragment
+import com.ftcoding.imager.util.asString
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
@@ -68,9 +70,8 @@ class CollectionFragment : Fragment(), CollectionImageAdapter.CollectionClickLis
 
         // observing error state and if error exist show in scaffold
         viewModel.errorState.observe(viewLifecycleOwner) { errorMessage ->
-            if (errorMessage.isNotEmpty()) {
-                Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
-            }
+            Snackbar.make(binding.collectionContainer, errorMessage.asString(requireContext()), Snackbar.LENGTH_LONG).show()
+
         }
 
         return binding.root
@@ -88,11 +89,13 @@ class CollectionFragment : Fragment(), CollectionImageAdapter.CollectionClickLis
             adapter = collectionImageAdapter
             setHasFixedSize(true)
         }
+        // attach new data to recycler view
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.collectionList.collectLatest {
                 collectionImageAdapter.submitData(it)
             }
         }
+        // loading listener
         collectionImageAdapter.addLoadStateListener { loadState ->
             when (loadState.source.refresh) {
                 is LoadState.Loading -> {

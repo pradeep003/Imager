@@ -1,6 +1,5 @@
 package com.ftcoding.imager.di
 
-import com.ftcoding.imager.api.ImagesApi
 import com.ftcoding.imager.api.UserApi
 import com.ftcoding.imager.repository.UserRepository
 import com.ftcoding.imager.repository.repository_impl.UserRepositoryImpl
@@ -41,11 +40,13 @@ object UserModule {
 
     @Provides
     @Singleton
-    fun provideUserUseCases(repository: UserRepository): UserUseCases {
+    fun provideUserUseCases(repository: UserRepository, api: UserApi): UserUseCases {
         return UserUseCases(
             getMyProfileUseCases = GetMyProfileUseCases(repository),
             getUserByUsernameUseCases = GetUserByUsernameUseCases(repository),
-            updateMyProfileUseCases = UpdateMyProfileUseCases(repository)
+            updateMyProfileUseCases = UpdateMyProfileUseCases(repository),
+            getUserLikedPhotoUseCases = GetCurrentUserLikedPhotoUseCases(api),
+            getUserPhotoUseCases = GetUserPhotoUseCases(api)
         )
     }
 

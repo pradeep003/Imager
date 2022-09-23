@@ -28,6 +28,8 @@ import com.ftcoding.imager.repository.prefstore.PrefsStore
 import com.ftcoding.imager.repository.prefstore.PrefsStoreImpl
 import com.ftcoding.imager.ui.bottom_sheet.BottomSheetFragment
 import com.ftcoding.imager.util.Constants
+import com.ftcoding.imager.util.asString
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -102,9 +104,8 @@ class HomeFragment : Fragment(), HomeImagesAdapter.AdapterClickListener {
 
         // observing error state and showing in scaffold
         viewModel.errorState.observe(viewLifecycleOwner) { errorMessage ->
-            if (errorMessage.isNullOrBlank()) {
-                Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
-            }
+            Snackbar.make(binding.llContainerHomeFragment, errorMessage.asString(requireContext()), Snackbar.LENGTH_LONG).show()
+
         }
 
         // on swipe set the default recycler view

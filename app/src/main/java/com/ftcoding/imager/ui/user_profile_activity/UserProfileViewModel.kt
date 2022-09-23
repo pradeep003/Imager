@@ -4,18 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.paging.cachedIn
-import com.ftcoding.imager.api.UserApi
 import com.ftcoding.imager.data.response.ImageResponse
 import com.ftcoding.imager.data.response.User
-import com.ftcoding.imager.repository.paging.UserPhotoPagingSource
 import com.ftcoding.imager.use_cases.image.ImageUseCases
 import com.ftcoding.imager.use_cases.user.UserUseCases
-import com.ftcoding.imager.util.Constants.PAGINATION_PAGE_SIZE
 import com.ftcoding.imager.util.Resource
+import com.ftcoding.imager.util.UiText
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
@@ -24,8 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class UserProfileViewModel @Inject constructor(
     private val userUseCases: UserUseCases,
-    private val imageUseCases: ImageUseCases,
-    private val api: UserApi
+    private val imageUseCases: ImageUseCases
 ) : ViewModel() {
 
     private var _isLikedPhoto = MutableLiveData<Boolean?>(null)
@@ -37,17 +31,12 @@ class UserProfileViewModel @Inject constructor(
     private var _imageResponse = MutableLiveData<ImageResponse?>()
     val imageResponse: LiveData<ImageResponse?> = _imageResponse
 
-    private var _errorState = MutableLiveData<String>("")
-    val errorState: LiveData<String> = _errorState
+    private var _errorState = MutableLiveData<UiText>()
+    val errorState: LiveData<UiText> = _errorState
 
-    fun getUserPhotos(username: String): Flow<PagingData<ImageResponse>> {
-        val userPhotos: Flow<PagingData<ImageResponse>> =
-            Pager(PagingConfig(pageSize = PAGINATION_PAGE_SIZE)) {
-                UserPhotoPagingSource(username = username, api = api)
-            }.flow
-                .cachedIn(viewModelScope)
-        return userPhotos
-    }
+    // get user all photos
+    fun getUserPhotos(username: String): Flow<PagingData<ImageResponse>> =
+        userUseCases.getUserPhotoUseCases.invoke(username)
 
     fun getUserByUsername(username: String) {
         viewModelScope.launch {
@@ -57,7 +46,7 @@ class UserProfileViewModel @Inject constructor(
                     _userProfileState.value = response.data
                 }
                 is Resource.Error -> {
-                    _errorState.value = response.uiText.toString()
+                    _errorState.value = response.uiText!!
                 }
             }
         }
@@ -70,7 +59,7 @@ class UserProfileViewModel @Inject constructor(
                 _imageResponse.value = photo.data
             }
             is Resource.Error -> {
-                _errorState.value = photo.uiText.toString()
+                _errorState.value = photo.uiText!!
 
             }
         }
@@ -83,7 +72,7 @@ class UserProfileViewModel @Inject constructor(
                     _isLikedPhoto.value = true
                 }
                 is Resource.Error -> {
-                    _errorState.value = photo.uiText.toString()
+                    _errorState.value = photo.uiText!!
                 }
             }
         }
@@ -96,7 +85,7 @@ class UserProfileViewModel @Inject constructor(
                     _isLikedPhoto.value = false
                 }
                 is Resource.Error -> {
-                    _errorState.value = photo.uiText.toString()
+                    _errorState.value = photo.uiText!!
                 }
             }
         }
@@ -108,6 +97,7 @@ class UserProfileViewModel @Inject constructor(
                 photo.data?.url
             }
             is Resource.Error -> {
+                _errorState.value = photo.uiText!!
                 null
             }
         }
